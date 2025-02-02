@@ -1,7 +1,15 @@
-from django.urls import path
-from .views import QuizQuestionList, SubmitQuizAttempt
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import QuizQuestionViewSet, QuizAttemptViewSet
 
+# Set up the router for the Quiz endpoints
+router = DefaultRouter()
+
+# Register the viewsets for questions and attempts
+router.register(r'questions', QuizQuestionViewSet)
+router.register(r'attempts', QuizAttemptViewSet)
+
+# Define the URL patterns for the API
 urlpatterns = [
-    path('api/quiz/questions/', QuizQuestionList.as_view(), name='quiz-questions'),
-    path('api/quiz/attempt/', SubmitQuizAttempt.as_view(), name='submit-quiz-attempt'),
+    path('api/', include(router.urls)),
 ]
