@@ -16,7 +16,7 @@ A Django REST Framework prototype for storing and serving bridge-related quiz co
 
 ## Getting started
 
-Requires Python, pip and a virtual environment. Dependency pins in older projects may need a compatible Python environment; this README does not upgrade them.
+Requires Git, Python, pip and a virtual environment. Dependency pins in older projects may need a compatible Python environment; this README does not upgrade them.
 
 ```bash
 git clone https://github.com/SamOBrienOlinger/dublin-city-bridges-backend.git
