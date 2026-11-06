@@ -18,29 +18,7 @@ A Django REST Framework prototype for storing and serving bridge-related quiz co
 
 Each attempt stores a user's score and submission date. Questions are stored independently, with answer options inside a JSON field. The schema records an overall score for each attempt. [Django models](backend/quiz/models.py) · [API serializers](backend/quiz/serializers.py)
 
-```mermaid
-erDiagram
-    accTitle: Dublin City Bridges quiz database
-    accDescr: Each attempt belongs to one user. The question bank is stored separately, with choices embedded in each question.
-    User ||..o{ "User Quiz Attempt" : makes
-
-    User {
-        int id PK
-        string username UK
-    }
-    "User Quiz Attempt" {
-        bigint id PK
-        int user_id FK
-        int score
-        datetime date
-    }
-    "Quiz Question" {
-        bigint id PK
-        string prompt
-        json choices
-        string answer
-    }
-```
+[![Each attempt belongs to one user. The question bank is stored separately, with choices embedded in each question.](docs/diagrams/dublin-city-bridges-quiz-database.svg)](docs/diagrams/dublin-city-bridges-quiz-database.svg)
 
 ## Getting started
 
