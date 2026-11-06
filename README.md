@@ -4,7 +4,7 @@ A Django REST Framework prototype for storing and serving bridge-related quiz co
 
 **Python · Django · Django REST Framework**
 
-[Getting started](#getting-started) · [Repository guide](#repository-guide) · [Checks](#checks-and-review) · [Credits](#credits-and-reuse)
+[Getting started](#getting-started) · [Data model](#entity-relationship-diagram) · [Repository guide](#repository-guide) · [Checks](#checks-and-review) · [Credits](#credits-and-reuse)
 
 ## What you can explore
 
@@ -13,6 +13,34 @@ A Django REST Framework prototype for storing and serving bridge-related quiz co
 - A SQLite-backed Django development project.
 
 > **Project notes:** The project is inside backend/. No Python requirements file is committed; the settings header records Django 5.1.5 and the source imports Django REST Framework. The static Know Dublin frontend is a separate application.
+
+## Entity relationship diagram
+
+Each attempt stores a user's score and submission date. Questions are stored independently, with answer options inside a JSON field. The schema records an overall score for each attempt. [Django models](backend/quiz/models.py) · [API serializers](backend/quiz/serializers.py)
+
+```mermaid
+erDiagram
+    accTitle: Dublin City Bridges quiz database
+    accDescr: Each attempt belongs to one user. The question bank is stored separately, with choices embedded in each question.
+    User ||..o{ "User Quiz Attempt" : makes
+
+    User {
+        int id PK
+        string username UK
+    }
+    "User Quiz Attempt" {
+        bigint id PK
+        int user_id FK
+        int score
+        datetime date
+    }
+    "Quiz Question" {
+        bigint id PK
+        string prompt
+        json choices
+        string answer
+    }
+```
 
 ## Getting started
 
